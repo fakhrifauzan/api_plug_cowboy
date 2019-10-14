@@ -6,6 +6,8 @@ defmodule ApiPlugCowboy.Endpoint do
   plug(Plug.Logger)
   plug(:match)
 
+  alias ApiPlugCowboy.Books
+
   plug(
     Plug.Parsers,
     parsers: [:json],
@@ -18,13 +20,17 @@ defmodule ApiPlugCowboy.Endpoint do
     send_resp(conn, 200, "pong")
   end
 
-  post "/books" do
+  post "/books-old" do
     {status, body} =
       case conn.body_params do
          %{"books" => books} -> {200, process_books(books)}
          _ -> {422, missing_books()}
       end
     send_resp(conn, status, body)
+  end
+
+  post "/books" do
+    respond_with_result(conn, Books.create(conn.params))
   end
 
   defp process_books(books) when is_list(books) do
@@ -41,6 +47,14 @@ defmodule ApiPlugCowboy.Endpoint do
 
   match _ do
     send_resp(conn, 404, "Oops... Nothing here :(")
+  end
+
+  def respond_with_result(conn, {status_code, result}) do
+    send_resp(
+      conn,
+      status_code,
+      result |> Poison.encode!()
+    )
   end
 
 end

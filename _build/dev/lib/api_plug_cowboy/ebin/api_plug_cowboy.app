@@ -4,8 +4,11 @@
               {description,"api_plug_cowboy"},
               {modules,['Elixir.ApiPlugCowboy',
                         'Elixir.ApiPlugCowboy.Application',
+                        'Elixir.ApiPlugCowboy.Books',
                         'Elixir.ApiPlugCowboy.Endpoint',
-                        'Elixir.ApiPlugCowboy.Repo']},
+                        'Elixir.ApiPlugCowboy.Model.Book',
+                        'Elixir.ApiPlugCowboy.Repo',
+                        'Elixir.ApiPlugCowboy.Utils']},
               {registered,[]},
               {vsn,"0.1.0"},
               {mod,{'Elixir.ApiPlugCowboy.Application',[]}}]}.
