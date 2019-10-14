@@ -2,6 +2,14 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :api_plug_cowboy, ecto_repos: [ApiPlugCowboy.Repo]
+
+config :api_plug_cowboy, ApiPlugCowboy.Repo,
+  database: "api_plug_cowboy_repo",
+  username: "root",
+  password: "sqlsecret",
+  hostname: "localhost"
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

@@ -1,9 +1,11 @@
 {application,api_plug_cowboy,
-             [{applications,[kernel,stdlib,elixir,logger,plug_cowboy,poison]},
+             [{applications,[kernel,stdlib,elixir,logger,plug_cowboy,poison,
+                             myxql,ecto_sql]},
               {description,"api_plug_cowboy"},
               {modules,['Elixir.ApiPlugCowboy',
                         'Elixir.ApiPlugCowboy.Application',
-                        'Elixir.ApiPlugCowboy.Endpoint']},
+                        'Elixir.ApiPlugCowboy.Endpoint',
+                        'Elixir.ApiPlugCowboy.Repo']},
               {registered,[]},
               {vsn,"0.1.0"},
               {mod,{'Elixir.ApiPlugCowboy.Application',[]}}]}.
