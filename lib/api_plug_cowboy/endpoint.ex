@@ -17,7 +17,7 @@ defmodule ApiPlugCowboy.Endpoint do
   plug(:dispatch)
 
   get "/ping" do
-    send_resp(conn, 200, "pong")
+    respond_with_result(conn, {200, "pong"})
   end
 
   post "/books-old" do
@@ -53,6 +53,7 @@ defmodule ApiPlugCowboy.Endpoint do
     send_resp(conn, 404, "Oops... Nothing here :(")
   end
 
+  # ref : https://stackoverflow.com/questions/46443781/how-to-avoid-json-decoding-in-phoenix-while-sending-json-response
   def respond_with_result(conn, {status_code, result}) do
     conn
     |> put_resp_content_type("application/json")
