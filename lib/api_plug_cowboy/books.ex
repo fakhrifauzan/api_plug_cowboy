@@ -13,7 +13,7 @@ defmodule ApiPlugCowboy.Books do
         {201, Utils.format_success(%{book: result})}
 
       {:error, changeset} ->
-        {400, Utils.format_failure_response(Utils.translate_errors(changeset))}
+        {400, Utils.format_failed_response(changeset)}
     end
   end
 end
