@@ -16,4 +16,16 @@ defmodule ApiPlugCowboy.Books do
         {400, Utils.format_failed_response(changeset)}
     end
   end
+
+  def get(book_id) do
+    result = Book |> Repo.get(book_id)
+
+    case result do
+      nil ->
+        {404, Utils.format_failed_response("Book with id: #{book_id} is not found")}
+
+      book ->
+        {200, Utils.format_success(book)}
+    end
+  end
 end

@@ -33,6 +33,10 @@ defmodule ApiPlugCowboy.Endpoint do
     respond_with_result(conn, Books.index)
   end
 
+  get "/books/:book_id" do
+    respond_with_result(conn, Books.get(book_id))
+  end
+
   post "/books" do
     respond_with_result(conn, Books.create(conn.params))
   end
