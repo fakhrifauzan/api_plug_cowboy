@@ -54,8 +54,9 @@ defmodule ApiPlugCowboy.Endpoint do
   end
 
   def respond_with_result(conn, {status_code, result}) do
-    send_resp(
-      conn,
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(
       status_code,
       result |> Poison.encode!()
     )
