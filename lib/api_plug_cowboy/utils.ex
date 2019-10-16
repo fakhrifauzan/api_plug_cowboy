@@ -3,6 +3,10 @@ defmodule ApiPlugCowboy.Utils do
     %{success: true, data: body}
   end
 
+  def format_failed_response(errors) when is_binary(errors) do
+    %{success: false, errors: errors}
+  end
+
   def format_failed_response(errors) do
     %{success: false, errors: translate_errors(errors)}
   end
