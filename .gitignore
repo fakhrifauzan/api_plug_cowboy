@@ -24,6 +24,7 @@ api_plug_cowboy-*.tar
 
 #Ignore .idea
 /.idea/
+api_plug_cowboy.iml
 
 #Ignore .elixir_ls
 /.elixir_ls/
