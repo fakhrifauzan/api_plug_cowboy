@@ -22,3 +22,8 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 api_plug_cowboy-*.tar
 
+#Ignore .idea
+/.idea/
+
+#Ignore .elixir_ls
+/.elixir_ls/

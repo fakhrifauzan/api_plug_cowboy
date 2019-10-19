@@ -6,6 +6,8 @@ defmodule ApiPlugCowboy.Endpoint do
   plug(Plug.Logger)
   plug(:match)
 
+  alias ApiPlugCowboy.Books
+
   plug(
     Plug.Parsers,
     parsers: [:json],
@@ -15,16 +17,32 @@ defmodule ApiPlugCowboy.Endpoint do
   plug(:dispatch)
 
   get "/ping" do
-    send_resp(conn, 200, "pong")
+    respond_with_result(conn, {200, "pong"})
   end
 
-  post "/books" do
+  post "/books-old" do
     {status, body} =
       case conn.body_params do
          %{"books" => books} -> {200, process_books(books)}
          _ -> {422, missing_books()}
       end
     send_resp(conn, status, body)
+  end
+
+  get "/books" do
+    respond_with_result(conn, Books.index)
+  end
+
+  get "/books/:book_id" do
+    respond_with_result(conn, Books.get(book_id))
+  end
+
+  delete "/books/:book_id" do
+    respond_with_result(conn, Books.delete(book_id))
+  end
+
+  post "/books" do
+    respond_with_result(conn, Books.create(conn.params))
   end
 
   defp process_books(books) when is_list(books) do
@@ -41,6 +59,16 @@ defmodule ApiPlugCowboy.Endpoint do
 
   match _ do
     send_resp(conn, 404, "Oops... Nothing here :(")
+  end
+
+  # ref : https://stackoverflow.com/questions/46443781/how-to-avoid-json-decoding-in-phoenix-while-sending-json-response
+  def respond_with_result(conn, {status_code, result}) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(
+      status_code,
+      result |> Poison.encode!()
+    )
   end
 
 end

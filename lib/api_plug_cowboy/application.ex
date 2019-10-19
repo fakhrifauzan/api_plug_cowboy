@@ -14,7 +14,8 @@ defmodule ApiPlugCowboy.Application do
         scheme: :http,
         plug: ApiPlugCowboy.Endpoint,
         options: [port: Application.get_env(:api_plug_cowboy, :port)]
-      )
+      ),
+      {ApiPlugCowboy.Repo, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
