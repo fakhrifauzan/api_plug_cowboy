@@ -28,4 +28,15 @@ defmodule ApiPlugCowboy.Books do
         {200, Utils.format_success(book)}
     end
   end
+
+  #ref: https://hexdocs.pm/ecto/Ecto.Repo.html#c:delete/2
+  def delete(book_id) do
+    case Book |> Repo.get(book_id) |> Repo.delete() do
+      {:error, changeset} ->
+        {404, Utils.format_failed_response(changeset)}
+
+      {:ok, _} ->
+        {204, :no_content}
+    end
+  end
 end
