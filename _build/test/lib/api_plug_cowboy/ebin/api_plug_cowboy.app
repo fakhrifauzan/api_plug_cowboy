@@ -1,9 +1,0 @@
-{application,api_plug_cowboy,
-             [{applications,[kernel,stdlib,elixir,logger,plug_cowboy,poison]},
-              {description,"api_plug_cowboy"},
-              {modules,['Elixir.ApiPlugCowboy',
-                        'Elixir.ApiPlugCowboy.Application',
-                        'Elixir.ApiPlugCowboy.Endpoint']},
-              {registered,[]},
-              {vsn,"0.1.0"},
-              {mod,{'Elixir.ApiPlugCowboy.Application',[]}}]}.
