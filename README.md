@@ -1,22 +1,41 @@
 # ApiPlugCowboy
 
-**TODO: Add description**
+ApiPlugCowboy is an Simple API (CRUD Book) using Plug and Cowboy based on Elixir.
 
-## Installation
+Main Tutorial : [this link](https://dev.to/jonlunsford/elixir-building-a-small-json-endpoint-with-plug-cowboy-and-poison-1826)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `api_plug_cowboy` to your list of dependencies in `mix.exs`:
+## Dependencies
 
-```elixir
-def deps do
-  [
-    {:api_plug_cowboy, "~> 0.1.0"}
-  ]
-end
+- Elixir 1.7.3
+- Erlang (OTP) 21
+- MySQL
+
+## Initial Setup
+
+```bash
+# get dependencies
+mix deps.get
+
+# create & migrate DB, see DB config here: config/confix.exs
+mix ecto.create
+mix ecto.migrate
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/api_plug_cowboy](https://hexdocs.pm/api_plug_cowboy).
+## Running Aplication
 
-Main Tutorial : https://dev.to/jonlunsford/elixir-building-a-small-json-endpoint-with-plug-cowboy-and-poison-1826
+```bash
+mix run --no-halt
+```
+Endpoint URL : `localhost:4444`
+
+Port Used in this ENV project : `MIX_ENV=env`
+- dev : `4444`
+- test : `4445`
+- prod : `4446`
+
+## Running Test Locally
+
+```bash
+# run test
+mix test --no-start
+```
