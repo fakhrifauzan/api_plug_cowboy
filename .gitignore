@@ -28,3 +28,9 @@ api_plug_cowboy.iml
 
 #Ignore .elixir_ls
 /.elixir_ls/
+
+#Ignore DS_Store
+.DS_Store
+
+#Ignore mix.lock
+mix.lock
